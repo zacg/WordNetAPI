@@ -1,0 +1,697 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LAIR.Misc</name>
+    </assembly>
+    <members>
+        <member name="T:LAIR.Misc.LanguageModel">
+            <summary>
+            Provides language modeling functionality
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.LanguageModel.#ctor(System.String,System.Int32,LAIR.Misc.StopWordHandler,LAIR.Morphology.Stemmer)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="text">Text to compute language model for</param>
+            <param name="n">Size of n-grams</param>
+            <param name="stopWordHandler">Stop word handler to apply, or null for no stop word processing</param>
+            <param name="stemmer">Stemmer to apply</param>
+        </member>
+        <member name="M:LAIR.Misc.LanguageModel.ComputeLanguageModel(System.Int32)">
+            <summary>
+            Computes an n-gram language model
+            </summary>
+            <param name="n">Size of n-grams</param>
+        </member>
+        <member name="M:LAIR.Misc.LanguageModel.Sample(System.Int32)">
+            <summary>
+            Gets a random sample of n-grams from this language model according to the observed distribution
+            </summary>
+            <param name="numberOfNGrams">Number of n-grams to get</param>
+            <returns>Sequence of n-grams</returns>
+        </member>
+        <member name="P:LAIR.Misc.LanguageModel.NGrams">
+            <summary>
+            Gets the n-grams in this model
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.InteractivePictureBox">
+            <summary>
+            InteractivePictureBox class
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.InteractivePictureBox.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="F:LAIR.Misc.InteractivePictureBox.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.InteractivePictureBox.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LAIR.Misc.InteractivePictureBox.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:LAIR.Misc.InteractivePictureBox.Image">
+            <summary>
+            Gets or sets the image to display
+            </summary>
+        </member>
+        <member name="T:LAIR.Math">
+            <summary>
+            Core math routines
+            </summary>
+        </member>
+        <member name="M:LAIR.Math.GetMean(System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Gets the mean of a list of numbers
+            </summary>
+            <param name="numbers">Numbers to get mean of</param>
+            <returns>Mean of numbers</returns>
+        </member>
+        <member name="M:LAIR.Math.GetVariance(System.Collections.Generic.List{System.Single})">
+            <summary>
+            Gets the variance of a list of numbers
+            </summary>
+            <param name="numbers">Numbers to get variance of</param>
+            <returns>Variance</returns>
+        </member>
+        <member name="M:LAIR.Math.Factorial(System.UInt32)">
+            <summary>
+            Gets the factorial of a number
+            </summary>
+            <param name="n">Number to get factorial of</param>
+            <returns>Factorial of number</returns>
+        </member>
+        <member name="M:LAIR.Math.GetStandardDeviation(System.Collections.Generic.List{System.Single})">
+            <summary>
+            Gets the standard deviation of a list of numbers
+            </summary>
+            <param name="numbers">Numbers to get standard deviation for</param>
+            <returns>Standard deviation</returns>
+        </member>
+        <member name="M:LAIR.Math.GetAverageDeviation(System.Collections.Generic.List{System.Single})">
+            <summary>
+            Gets the average deviation of a list of numbers
+            </summary>
+            <param name="numbers">Numbers to get average deviation for</param>
+            <returns>Average deviation</returns>
+        </member>
+        <member name="M:LAIR.Math.GetEntropy(System.Collections.Generic.List{System.Single})">
+            <summary>
+            Gets the entropy of a distribution
+            </summary>
+            <param name="distribution"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.Math.GetKLDivergence(System.Collections.Generic.List{System.Single})">
+            <summary>
+            Gets the KL-divergence between a distribution and the uniform distribution
+            </summary>
+            <param name="distribution"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.Math.GetKLDivergence(System.Collections.Generic.List{System.Single},System.Collections.Generic.List{System.Single})">
+            <summary>
+            Gets the KL-divergence between two distributiona
+            </summary>
+            <param name="distribution1"></param>
+            <param name="distribution2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.Math.ScaleToDistribution(System.Collections.Generic.List{System.Single})">
+            <summary>
+            Scales a list of floats to a distribution
+            </summary>
+            <param name="vals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.Math.GetCosineSimilarity(System.Collections.Generic.Dictionary{System.String,System.Single},System.Collections.Generic.Dictionary{System.String,System.Single})">
+            <summary>
+            Gets cosine similarity between two vectors indexed by strings
+            </summary>
+            <param name="v1">First vector</param>
+            <param name="v2">Second vector</param>
+            <returns>Cosine similarity in [0, 1]</returns>
+        </member>
+        <member name="M:LAIR.Math.GetCosineSimilarity(System.Collections.Generic.Dictionary{System.Int32,System.Single},System.Collections.Generic.Dictionary{System.Int32,System.Single})">
+            <summary>
+            Gets cosine similarity between two vectors indexed by integers
+            </summary>
+            <param name="v1">First vector</param>
+            <param name="v2">Second vector</param>
+            <returns>Cosine similarity in [0, 1]</returns>
+        </member>
+        <member name="M:LAIR.Math.GetCosineSimilarity(System.Single[],System.Single[])">
+            <summary>
+            Gets cosine similarity of two vectors
+            </summary>
+            <param name="v1">Vector 1</param>
+            <param name="v2">Vector 2</param>
+            <returns>Cosine similarity</returns>
+        </member>
+        <member name="M:LAIR.Math.GetDisjunctiveProbability(System.Single[])">
+            <summary>
+            Gets the disjunctive probability for a list of event probabilities
+            </summary>
+            <param name="probabilities">Probabilities to process</param>
+            <returns>Disjunctive probability for a list of event probabilities</returns>
+        </member>
+        <member name="M:LAIR.Math.GetDisjunctiveProbability(System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Gets the disjunctive probability for a list of event probabilities
+            </summary>
+            <param name="probabilities">Probabilities to process</param>
+            <returns>Disjunctive probability for a list of event probabilities</returns>
+        </member>
+        <member name="M:LAIR.Math.GetFMeasureFromCounts(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets F-measure given total reference items, predicted items, and true predictions
+            </summary>
+            <param name="total">Total number of reference items</param>
+            <param name="predicted">Number of predictions</param>
+            <param name="correctPredictions">Number of correct predictions</param>
+            <returns>F-measure</returns>
+        </member>
+        <member name="M:LAIR.Math.GetFMeasure(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets F-measure given precision, recall, and beta.
+            </summary>
+            <param name="precision">Precision</param>
+            <param name="recall">Recall</param>
+            <param name="beta">Beta</param>
+            <returns>F-measure</returns>
+        </member>
+        <member name="M:LAIR.Math.GetFMeasure(System.Single,System.Single)">
+            <summary>
+            Gets F-measure given precision, recall, and beta=1
+            </summary>
+            <param name="precision">Precision</param>
+            <param name="recall">Recall</param>
+            <returns>F-measure</returns>
+        </member>
+        <member name="M:LAIR.Math.GetHistogram(System.Collections.Generic.List{System.Single},System.Single)">
+            <summary>
+            Gets a basic histogram of data
+            </summary>
+            <param name="data">Data to get histograph for</param>
+            <param name="intervalWidth">Width of histogram intervals</param>
+            <returns>Histogram y values</returns>
+        </member>
+        <member name="M:LAIR.Math.WriteRocCurve(System.Collections.Generic.List{System.Tuple{System.Single,System.Boolean}},System.String)">
+            <summary>
+            Writes an ROC curve from predictions
+            </summary>
+            <param name="predictions">Predictions, where each tuple is the predicted probability and the true binary class.</param>
+            <param name="outputPath">Where to write ROC curve</param>
+        </member>
+        <member name="M:LAIR.Math.GetBootstrapStatistics(System.Collections.Generic.List{System.Object},System.Int32,LAIR.Math.BootstrapStatisticDelegate)">
+            <summary>
+            Gets bootstrap statistics
+            </summary>
+            <param name="sample">Data to resample from</param>
+            <param name="numResamples">Number of bootstrap resamples to take</param>
+            <param name="statisticDelegate">Delegate for computing a statistic over a resample</param>
+            <returns>Bootstrap statistics</returns>
+        </member>
+        <member name="M:LAIR.Math.GetPercentileConfidenceInterval(System.Single,System.Collections.Generic.List{System.Single},LAIR.Math.Tail,System.Single@,System.Single@)">
+            <summary>
+            Gets the (1-alpha)*100 percent confidence interval using the bootstrap sampling method described by Keller et. al (2005).
+            </summary>
+            <param name="alpha">Critical region alpha value</param>
+            <param name="statistics">Statistics to get confidence interval for</param>
+            <param name="intervalTail">Interval tail</param>
+            <param name="intervalMin">Start of interval</param>
+            <param name="intervalMax">End of interval</param>
+        </member>
+        <member name="M:LAIR.Math.GetFisherExactSignificance(System.Int32[][],System.Boolean)">
+            <summary>
+            Performs a one-sided exact Fisher significance test on a 2-by-2 matrix, optionally performing a two-sided test.
+            </summary>
+            <param name="matrix">2-by-2 matrix to test. The main diagonal denotes the reference "situation". All "more
+            extreme situations" are computed by subtracting from the non-main diagonal and adding to the main diagonal. See
+            the literature for a discussion.</param>
+            <param name="twoSided">Whether or not to perform a two-sided test</param>
+            <returns>Probability of the matrix proportions (or those more extreme) being generated by chance, assuming
+            the marginals remain the same.</returns>
+        </member>
+        <member name="M:LAIR.Math.GetFisherExactProbability(System.Int32[][])">
+            <summary>
+            Gets the Fisher-exact probability of a 2-by-2 matrix
+            </summary>
+            <param name="matrix">Matrix</param>
+            <returns>Fisher-exact probability</returns>
+        </member>
+        <member name="M:LAIR.Math.GetFactorial(System.Int32)">
+            <summary>
+            Gets a factorial
+            </summary>
+            <param name="n">Integer to get factorial for</param>
+            <returns>Factorial</returns>
+        </member>
+        <member name="M:LAIR.Math.CopyMatrix(System.Int32[][])">
+            <summary>
+            Copies a matrix
+            </summary>
+            <param name="matrix">Matrix to copy</param>
+            <returns>Copy of matrix</returns>
+        </member>
+        <member name="T:LAIR.Math.Tail">
+            <summary>
+            Tails
+            </summary>
+        </member>
+        <member name="F:LAIR.Math.Tail.Left">
+            <summary>
+            Left tail
+            </summary>
+        </member>
+        <member name="F:LAIR.Math.Tail.Right">
+            <summary>
+            Right tail
+            </summary>
+        </member>
+        <member name="F:LAIR.Math.Tail.Both">
+            <summary>
+            Two-tailed
+            </summary>
+        </member>
+        <member name="T:LAIR.Math.BootstrapStatisticDelegate">
+            <summary>
+            Delegate for functions that compute a bootstrap statistic
+            </summary>
+            <param name="bootstrapSample">Sample data from which to compute bootstrap </param>
+            <param name="statistic">Resulting statistic</param>
+            <returns>True if statistic should be used and false otherwise</returns>
+        </member>
+        <member name="T:LAIR.Misc.IUpdatesStatus">
+            <summary>
+            Interface for classes that update their status
+            </summary>
+        </member>
+        <member name="E:LAIR.Misc.IUpdatesStatus.OnUpdateStatus">
+            <summary>
+            Fired when status is updated
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.UpdateStatusArg">
+            <summary>
+            Update status argument class
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.UpdateStatusArg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="newStatus">New status</param>
+        </member>
+        <member name="P:LAIR.Misc.UpdateStatusArg.NewStatus">
+            <summary>
+            Gets the new status
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LAIR.Misc.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LAIR.Misc.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:LAIR.Misc.Properties.Resources.stopwords">
+             <summary>
+               Looks up a localized string similar to a
+            abaft
+            aboard
+            about
+            above
+            according
+            across
+            afore
+            aforesaid
+            after
+            afterwards
+            again
+            against
+            agin
+            ago
+            aint
+            albeit
+            all
+            almost
+            alone
+            along
+            alongside
+            already
+            also
+            although
+            always
+            am
+            amid
+            amidst
+            among
+            amongst
+            an
+            and
+            anent
+            another
+            any
+            anybody
+            anyhow
+            anyone
+            anything
+            anyway
+            anywhere
+            apart
+            are
+            aren&apos;t
+            around
+            as
+            aslant
+            astride
+            at
+            athwart
+            av
+            away
+            b
+            back
+            bar
+            barring
+            be
+            became
+            because
+            become
+            becomes
+            becoming
+            been
+            before
+            beforehand
+            behind
+            being
+            below
+            beneath
+            beside
+            besides
+            best
+            better
+            between
+            betwixt
+            beyond
+            both
+            but
+            by
+            c
+            c [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:LAIR.Misc.StopWordHandler">
+            <summary>
+            Removes stop words
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.StopWordHandler.#ctor">
+            <summary>
+            Constructs a stop word handler using the default stop word list, which is fairly aggressive.
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.StopWordHandler.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stopWords">List of stop words to use</param>
+        </member>
+        <member name="M:LAIR.Misc.StopWordHandler.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to stop word list (one word per line)</param>
+        </member>
+        <member name="M:LAIR.Misc.StopWordHandler.IsStopWord(System.String)">
+            <summary>
+            Check if a word is a stop word
+            </summary>
+            <param name="word">Word to check</param>
+            <returns>True if word is a stop word, false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Misc.StopWordHandler.RemoveStopWords(System.Collections.Generic.List{System.String})">
+            <summary>
+            Removes stop words from a list of words
+            </summary>
+            <param name="words">Words to check</param>
+        </member>
+        <member name="T:LAIR.Misc.ChartCell">
+            <summary>
+            ChartCell class
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.MinEdit">
+            <summary>
+            Min edit class
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.MinEdit.EditDistance(System.String,System.String,System.Boolean)">
+            <summary>
+            Gets edit distance between two strings
+            </summary>
+            <param name="s1">First string</param>
+            <param name="s2">Second string</param>
+            <param name="caseSensitive">Perform in case-sensitive manner</param>
+            <returns>Minimum edit distance between two strings</returns>
+        </member>
+        <member name="T:LAIR.Misc.GetValue">
+            <summary>
+            Form for getting a value from the user
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.GetValue.Show(System.String)">
+            <summary>
+            Shows a dialog and returns the value
+            </summary>
+            <param name="title">Title for dialog</param>
+            <returns>Value</returns>
+        </member>
+        <member name="M:LAIR.Misc.GetValue.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="windowTitle">Title of window</param>
+        </member>
+        <member name="F:LAIR.Misc.GetValue.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.GetValue.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LAIR.Misc.GetValue.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:LAIR.Misc.GetValue.Value">
+            <summary>
+            Gets the value entered by the user
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.HPCC">
+            <summary>
+            Provides functionality for interacting with MSU's HPCC
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.HPCC.CreateJobScripts(System.String,System.String,LAIR.Collections.Generic.Set{System.String},System.String,LAIR.Misc.HPCC.ScriptCompleter)">
+            <summary>
+            Creates HPCC job scripts for input files in a given directory
+            </summary>
+            <param name="directory">Directory to look for files in</param>
+            <param name="filePattern">File pattern to match</param>
+            <param name="excludeExtensions">File extensions to exclude (include . in extensions), or null for no exclusion</param>
+            <param name="stubScriptPath">Stub script path, which will be completed for each input file</param>
+            <param name="scriptCompleter">Script completion function</param>
+        </member>
+        <member name="M:LAIR.Misc.HPCC.ConvertFeatureTransformForSelection(System.String)">
+            <summary>
+            Converts a feature name transform into a mapping from feature numbers to groups
+            </summary>
+            <param name="path">Path to transform</param>
+        </member>
+        <member name="T:LAIR.Misc.HPCC.ScriptCompleter">
+            <summary>
+            Delegate for functions that complete HPCC job scripts
+            </summary>
+            <param name="filePath">Path to file that is to be processed</param>
+            <returns>Completion of job script</returns>
+        </member>
+        <member name="T:LAIR.Misc.TidyHTML">
+            <summary>
+            Provides access to the Tidy HTML program
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.TidyHTML.Run(System.String,System.String)">
+            <summary>
+            Runs Tidy HTML on some input
+            </summary>
+            <param name="tidyExePath">Path to executable</param>
+            <param name="input">Input text</param>
+            <returns>Tidy HTML output</returns>
+        </member>
+        <member name="T:LAIR.Misc.ImageViewer">
+            <summary>
+            ImageViewer form
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.ImageViewer.#ctor(System.Collections.Generic.List{LAIR.Misc.TitledImage})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="images">List of images to view</param>
+        </member>
+        <member name="M:LAIR.Misc.ImageViewer.#ctor(System.Collections.Generic.List{LAIR.Misc.TitledImage},System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="images">List of images to view</param>
+            <param name="startImage">Zero-based index of image to start on</param>
+        </member>
+        <member name="M:LAIR.Misc.ImageViewer.OnImageChange(System.Object,LAIR.Misc.ImageChangedEventArgs)">
+            <summary>
+            Fires OnImageChange event
+            </summary>
+            <param name="o"></param>
+            <param name="icea"></param>
+        </member>
+        <member name="F:LAIR.Misc.ImageViewer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.ImageViewer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LAIR.Misc.ImageViewer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="E:LAIR.Misc.ImageViewer.ImageChanged">
+            <summary>
+            Fired when images changes
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.ImageViewer.ImageChangedHandler">
+            <summary>
+            Handles the event in which the image that is being displayed is changed
+            </summary>
+            <param name="o"></param>
+            <param name="icea"></param>
+        </member>
+        <member name="T:LAIR.Misc.ImageChangedEventArgs">
+            <summary>
+            The event arguments for the ImageChanged event
+            </summary>
+        </member>
+        <member name="F:LAIR.Misc.ImageChangedEventArgs.title">
+            <summary>
+            Title of image
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.ImageChangedEventArgs.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="Title"></param>
+        </member>
+        <member name="T:LAIR.Misc.PrefixTreeNode">
+            <summary>
+            Represents the prefix tree (trie) data structure
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.PrefixTreeNode.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.PrefixTreeNode.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="s">String to initialize this tree with</param>
+        </member>
+        <member name="M:LAIR.Misc.PrefixTreeNode.Add(System.String)">
+            <summary>
+            Adds a string to the current tree
+            </summary>
+            <param name="s">String to add</param>
+        </member>
+        <member name="T:LAIR.Misc.TitledImage">
+            <summary>
+            TitledImage class
+            </summary>
+        </member>
+        <member name="M:LAIR.Misc.TitledImage.#ctor(System.Drawing.Image,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="image"></param>
+            <param name="title"></param>
+        </member>
+        <member name="P:LAIR.Misc.TitledImage.Title">
+            <summary>
+            Gets or sets the title on this titled image
+            </summary>
+        </member>
+        <member name="P:LAIR.Misc.TitledImage.Image">
+            <summary>
+            Gets or sets the image for this titled image
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.EventDelegates">
+            <summary>
+            Miscellaneous event delegates
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.EventDelegates.ProgressUpdateDelegate">
+            <summary>
+            Represents a method called to give updates on processing progress
+            </summary>
+            <param name="percentDone"></param>
+        </member>
+        <member name="T:LAIR.Misc.EventDelegates.ProcessingDoneDelegate">
+            <summary>
+            Represents a method called to notify of processing completion
+            </summary>
+        </member>
+        <member name="T:LAIR.Misc.EventDelegates.GenericDelegate">
+            <summary>
+            Generic, void-return, no-parameter delegate
+            </summary>
+        </member>
+    </members>
+</doc>

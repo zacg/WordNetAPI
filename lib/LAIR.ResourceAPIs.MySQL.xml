@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LAIR.ResourceAPIs.MySQL</name>
+    </assembly>
+    <members>
+        <member name="T:LAIR.ResourceAPIs.MySQL.Query">
+            <summary>
+            Provides utility database functionality
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.Query.YieldFieldValues``1(System.String,System.String,LAIR.ResourceAPIs.MySQL.ConnectionPool)">
+            <summary>
+            Gets concept IDs for a query
+            </summary>
+            <param name="query"></param>
+            <param name="field"></param>
+            <param name="connectionPool"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.MySQL.ConnectionPool">
+            <summary>
+            Represents a pool of connections to the MySQL server
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.ConnectionPool.#ctor(MySql.Data.MySqlClient.MySqlConnection)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="baseConnection">Base connection</param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.ConnectionPool.#ctor(System.String,System.String,System.String,System.String,System.UInt32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="server"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="database"></param>
+            <param name="connectionTimeout"></param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.ConnectionPool.Test">
+            <summary>
+            Tests this connection pool
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.ConnectionPool.Return(MySql.Data.MySqlClient.MySqlConnection)">
+            <summary>
+            Returns a connection to the pool
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.ConnectionPool.Return(MySql.Data.MySqlClient.MySqlCommand)">
+            <summary>
+            Returns the connection associated with a command to the pool
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.ConnectionPool.NewCommand(System.String)">
+            <summary>
+            Creates a new command associated with an open connection
+            </summary>
+            <param name="commandText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.ConnectionPool.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes a non-query command
+            </summary>
+            <param name="commandText">Text of command</param>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.MySQL.ConnectionPool.OpenConnection">
+            <summary>
+            Gets a new open connection to the server
+            </summary>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.MySQL.Database">
+            <summary>
+            Provides convenience methods for databases
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.MySQL.Database.GetTables(LAIR.ResourceAPIs.MySQL.ConnectionPool)">
+            <summary>
+            Gets tables
+            </summary>
+            <param name="connectionPool"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

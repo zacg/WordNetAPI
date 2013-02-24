@@ -53,17 +53,14 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LAIR.Collections, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Libraries\LAIR.Collections.dll</HintPath>
+    <Reference Include="LAIR.Collections">
+      <HintPath>..\..\lib\LAIR.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="LAIR.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Libraries\LAIR.Extensions.dll</HintPath>
+    <Reference Include="LAIR.Extensions">
+      <HintPath>..\..\lib\LAIR.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="LAIR.ResourceAPIs.WordNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Libraries\LAIR.ResourceAPIs.WordNet.dll</HintPath>
+    <Reference Include="LAIR.IO">
+      <HintPath>..\..\lib\LAIR.IO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -133,6 +130,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WordNet\WordNet.csproj">
+      <Project>{F4C6C48C-90EF-445D-B8F8-AD9B6767D9A8}</Project>
+      <Name>WordNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

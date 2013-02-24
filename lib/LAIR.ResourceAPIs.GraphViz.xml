@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LAIR.ResourceAPIs.GraphViz</name>
+    </assembly>
+    <members>
+        <member name="T:LAIR.ResourceAPIs.GraphViz.ViewerForm">
+            <summary>
+            Complete form for viewing GraphViz items
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.ViewerForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerForm.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerForm.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="numNodeClickStates">Number of states nodes can be put into via clicking</param>
+        </member>
+        <member name="E:LAIR.ResourceAPIs.GraphViz.ViewerForm.NodeClicked">
+            <summary>
+            Occurs when a node is clicked
+            </summary>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.ViewerForm.GraphPath">
+            <summary>
+            Gets or sets the graph path
+            </summary>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.GraphViz.ViewerControl">
+            <summary>
+            Viewer for GraphViz items
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerControl.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="numNodeClickStates">Number of states the nodes in this viewer can be put into via clicking</param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerControl.View(System.String)">
+            <summary>
+            Views a graph
+            </summary>
+            <param name="graphPath">Path to graph file</param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerControl.DrawEdges(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Draws edges in the viewer
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerControl.Clear">
+            <summary>
+            Clears this viewer control
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.ViewerControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.ViewerControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="E:LAIR.ResourceAPIs.GraphViz.ViewerControl.NodeClicked">
+            <summary>
+            Occurs when a node is clicked
+            </summary>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.ViewerControl.NumNodeClickStates">
+            <summary>
+            Gets or sets the number of node states (default:  2)
+            </summary>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.GraphViz.ViewerControl.NodeClickedDelegate">
+            <summary>
+            Delegate for functions that handle node clicks
+            </summary>
+            <param name="clicked"></param>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.GraphViz.Dot">
+            <summary>
+            Wrapper for Dot executable
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.Dot.#cctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.Dot.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dotPath">Path to Dot executable</param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.Dot.CreateGraph(LAIR.ResourceAPIs.GraphViz.IGraphVizible,LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat)">
+            <summary>
+            Creates a graph from an entity
+            </summary>
+            <param name="entity">Entity to create graph for</param>
+            <param name="outputFormat">Output format</param>
+            <returns>Path to created graph file</returns>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.Dot.CreateGraph(LAIR.ResourceAPIs.GraphViz.IGraphVizible,LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat,System.String)">
+            <summary>
+            Creates a graph from an entity
+            </summary>
+            <param name="entity">Entity to create graph for</param>
+            <param name="outputFormat">Output format</param>
+            <param name="outputPath">Output path</param>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.Dot.DotPath">
+            <summary>
+            Gets or sets the path to the Dot executable
+            </summary>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat">
+            <summary>
+            Output formats
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat.JPG">
+            <summary>
+            Jpeg
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat.PNG">
+            <summary>
+            PNG
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat.GIF">
+            <summary>
+            Gif
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat.EPS">
+            <summary>
+            Encapsulated postscript
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat.Plain">
+            <summary>
+            Plain-text layout
+            </summary>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.Dot.OutputFormat.Dot">
+            <summary>
+            Output the original Dot specification
+            </summary>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.GraphViz.IGraphVizible">
+            <summary>
+            Interface for classes that can be graphed using the GraphViz suite
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.IGraphVizible.GetDotGraphSpecification">
+            <summary>
+            Gets specification of graph using the Dot language
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LAIR.ResourceAPIs.GraphViz.Node">
+            <summary>
+            Represents a clickable node in a graph
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.Node.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">ID of node</param>
+            <param name="text">Text to display on this node</param>
+            <param name="numClickStates">Number of states the node can be put into via clicking it</param>
+        </member>
+        <member name="F:LAIR.ResourceAPIs.GraphViz.Node.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.Node.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LAIR.ResourceAPIs.GraphViz.Node.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.Node.AdjacentNodes">
+            <summary>
+            Gets or sets the list of adjacent nodes for this node
+            </summary>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.Node.OriginalText">
+            <summary>
+            Gets or sets the original text for this node
+            </summary>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.Node.State">
+            <summary>
+            Gets or sets the zero-based state for this node
+            </summary>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.Node.ID">
+            <summary>
+            Gets or sets the ID for this node
+            </summary>
+        </member>
+        <member name="P:LAIR.ResourceAPIs.GraphViz.Node.Location">
+            <summary>
+            Gets or sets the location (center) of this node
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LAIR.IO</name>
+    </assembly>
+    <members>
+        <member name="T:LAIR.IO.Network">
+            <summary>
+            Provides convenience routines for network IO
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.Network.GetLocalIpAddresses">
+            <summary>
+            Gets IP addresses associated with the local host
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LAIR.IO.BinarySearchTextStream">
+            <summary>
+            Represents a stream of text, the lines of which can be searched with a binary search algorithm. Any type of stream can be used
+            allowing searches on-disk (e.g., using FileStream) or in-memory (e.g., using MemoryStream).
+            </summary>
+        </member>
+        <member name="T:LAIR.IO.SearchTextStream">
+            <summary>
+            Represents a text stream, the lines of which can be searched.
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.SearchTextStream.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stream">Stream to search</param>
+        </member>
+        <member name="M:LAIR.IO.SearchTextStream.Search(System.Object)">
+            <summary>
+            Searches for a key
+            </summary>
+            <param name="key">Key to search for</param>
+            <returns>Line matching key, or null if key was not found</returns>
+        </member>
+        <member name="M:LAIR.IO.SearchTextStream.Search(System.Object,System.Int64,System.Int64)">
+            <summary>
+            Searches for a key within a specified byte range
+            </summary>
+            <param name="key">Key to search for</param>
+            <param name="start">Start of byte range</param>
+            <param name="end">End of byte range</param>
+            <returns>Line matching key</returns>
+        </member>
+        <member name="M:LAIR.IO.SearchTextStream.CheckSearchRange(System.Int64,System.Int64)">
+            <summary>
+            Checks the search range
+            </summary>
+            <param name="start">Start of range</param>
+            <param name="end">End of range</param>
+        </member>
+        <member name="M:LAIR.IO.SearchTextStream.Close">
+            <summary>
+            Closes this search stream and releases all resources
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.SearchTextStream.ReInitialize(System.IO.Stream)">
+            <summary>
+            Re-initializes this search stream with a new stream
+            </summary>
+            <param name="stream">Stream to initialize with</param>
+        </member>
+        <member name="P:LAIR.IO.SearchTextStream.Stream">
+            <summary>
+            Gets the stream searched by this instance
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.BinarySearchTextStream.#ctor(System.IO.Stream,LAIR.IO.BinarySearchTextStream.SearchComparisonDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stream">Stream to search</param>
+            <param name="searchComparison">Search comparison function</param>
+        </member>
+        <member name="M:LAIR.IO.BinarySearchTextStream.#ctor(System.String,LAIR.IO.BinarySearchTextStream.SearchComparisonDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to file for which to create a search stream</param>
+            <param name="searchComparison">Search comparison function</param>
+        </member>
+        <member name="M:LAIR.IO.BinarySearchTextStream.Search(System.Object,System.Int64,System.Int64)">
+            <summary>
+            Searches a range in the stream
+            </summary>
+            <param name="key">Search key</param>
+            <param name="start">Start byte position of search</param>
+            <param name="end">End byte position of search</param>
+            <returns>Desired line, or null if none was found</returns>
+        </member>
+        <member name="T:LAIR.IO.BinarySearchTextStream.SearchComparisonDelegate">
+            <summary>
+            Delegate for functions that direct the search by comparing the search key to the current line. The return value
+            of such a function should be -1 if the search key (first parameter) comes before the current line (second 
+            parameter), 1 if the search key comes after the current line, and 0 if the current line is the desired line.
+            </summary>
+            <param name="key">Search key</param>
+            <param name="currentLine">Current line in the stream</param>
+            <returns>Described in summary</returns>
+        </member>
+        <member name="T:LAIR.IO.InMemoryFileLineReader">
+            <summary>
+            Reads lines from a file after storing them in memory. Can be used more than once without reinitializing.
+            </summary>
+        </member>
+        <member name="T:LAIR.IO.FileLineReader">
+            <summary>
+            Reads lines from a file
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.FileLineReader.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to file to count</param>
+        </member>
+        <member name="M:LAIR.IO.FileLineReader.Close">
+            <summary>
+            Closes this reader
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.FileLineReader.GetEnumerator">
+            <summary>
+            Gets an enumerator over lines in the file
+            </summary>
+            <returns>Enumerator over lines</returns>
+        </member>
+        <member name="M:LAIR.IO.FileLineReader.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets an enumerator over lines in the file
+            </summary>
+            <returns>Enumerator over lines</returns>
+        </member>
+        <member name="P:LAIR.IO.FileLineReader.Path">
+            <summary>
+            Gets the path to the file to read
+            </summary>
+        </member>
+        <member name="P:LAIR.IO.FileLineReader.Count">
+            <summary>
+            Gets the number of lines in the file
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.InMemoryFileLineReader.#ctor(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to file to count</param>
+            <param name="allowBlankLines">Whether or not to allow blank lines</param>
+            <param name="trimLines">Whether or not to trim lines when counting. Can only be true if allowBlank is false.</param>
+        </member>
+        <member name="M:LAIR.IO.InMemoryFileLineReader.Close">
+            <summary>
+            Closes this reader and releases all memory
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.InMemoryFileLineReader.GetEnumerator">
+            <summary>
+            Gets an enumerator over lines in this reader
+            </summary>
+            <returns>Enumerator over lines in this reader</returns>
+        </member>
+        <member name="P:LAIR.IO.InMemoryFileLineReader.Count">
+            <summary>
+            Gets the number of lines in the file
+            </summary>
+        </member>
+        <member name="T:LAIR.IO.OnDiskFileLineReader">
+            <summary>
+            Reads lines from a file without storing them in memory. Can be used more than once without reinitializing.
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.OnDiskFileLineReader.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to file to count</param>
+        </member>
+        <member name="M:LAIR.IO.OnDiskFileLineReader.Close">
+            <summary>
+            Closes the file read by this reader
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.OnDiskFileLineReader.GetEnumerator">
+            <summary>
+            Gets an enumerator over lines in the file
+            </summary>
+            <returns>Enumerator over lines in the file</returns>
+        </member>
+        <member name="P:LAIR.IO.OnDiskFileLineReader.Count">
+            <summary>
+            Gets the number of lines in the file
+            </summary>
+        </member>
+        <member name="T:LAIR.IO.HashSearchTextStream">
+            <summary>
+            Represents a text stream, the lines of which can be searched with a hashing search algorithm. In the hashing search algorithm,
+            each line is mapped to a hash code. The hash code for a line is mapped to the line's position in the file. To check whether a
+            line is present, one need only compute the hash of the queried line and read the file at the given position. Because of hash
+            collisions, one might need to read multiple lines.
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.HashSearchTextStream.#ctor(System.IO.Stream,LAIR.IO.HashSearchTextStream.HashProviderDelegate,LAIR.IO.HashSearchTextStream.MatchProviderDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stream">Stream of text to search</param>
+            <param name="hashProvider">Hash provider</param>
+            <param name="matchProvider">Match provider</param>
+        </member>
+        <member name="M:LAIR.IO.HashSearchTextStream.#ctor(System.String,LAIR.IO.HashSearchTextStream.HashProviderDelegate,LAIR.IO.HashSearchTextStream.MatchProviderDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to file for which to create a search stream</param>
+            <param name="hashProvider">Hash provider</param>
+            <param name="matchProvider">Match provider</param>
+        </member>
+        <member name="M:LAIR.IO.HashSearchTextStream.Initialize">
+            <summary>
+            Initializes this search using the current stream
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.HashSearchTextStream.ReInitialize(System.IO.Stream)">
+            <summary>
+            Re-initializes this search stream with a new stream
+            </summary>
+            <param name="stream">Stream to initialize with</param>
+        </member>
+        <member name="M:LAIR.IO.HashSearchTextStream.Search(System.Object,System.Int64,System.Int64)">
+            <summary>
+            Searches for a key within a specified byte range
+            </summary>
+            <param name="key">Key to search for</param>
+            <param name="start">Start of byte range</param>
+            <param name="end">End of byte range</param>
+            <returns>Line matching key</returns>
+        </member>
+        <member name="M:LAIR.IO.HashSearchTextStream.Close">
+            <summary>
+            Closes this search and releases all resources
+            </summary>
+        </member>
+        <member name="T:LAIR.IO.HashSearchTextStream.HashType">
+            <summary>
+            Types of hashes requested
+            </summary>
+        </member>
+        <member name="F:LAIR.IO.HashSearchTextStream.HashType.Index">
+            <summary>
+            Requesting a hash to create the initial index
+            </summary>
+        </member>
+        <member name="F:LAIR.IO.HashSearchTextStream.HashType.Search">
+            <summary>
+            Requesting a hash to perform a search
+            </summary>
+        </member>
+        <member name="T:LAIR.IO.HashSearchTextStream.HashProviderDelegate">
+            <summary>
+            Delegate for functions that provide hash codes
+            </summary>
+            <param name="toHash">Object to get hash code for</param>
+            <param name="action">Type of hashing action performed</param>
+            <param name="hashCode">Hash code (output)</param>
+            <returns>True if hash should be used, false otherwise</returns>
+        </member>
+        <member name="T:LAIR.IO.HashSearchTextStream.MatchProviderDelegate">
+            <summary>
+            Delegate for functions that check whether a line matches the search criteria
+            </summary>
+            <param name="key">Key being searched for</param>
+            <param name="currentLine">Current line in file</param>
+            <returns>True if line matches, false otherwise</returns>
+        </member>
+        <member name="T:LAIR.IO.File">
+            <summary>
+            Provides additional filesystem routines
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.File.GetNumberOfLines(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Gets the number of lines in a file
+            </summary>
+            <param name="path">Path to file to count</param>
+            <param name="allowBlankLines">Whether or not to allow blank lines</param>
+            <param name="trimLines">Whether or not to trim lines when counting</param>
+            <returns>Number of lines in file</returns>
+        </member>
+        <member name="M:LAIR.IO.File.GetLineEnding(System.String)">
+            <summary>
+            Gets the line ending used for a file - either "\r", "\n", or "\r\n", or "" if no line ending is found
+            </summary>
+            <param name="path">Path to file</param>
+            <returns>Line ending</returns>
+        </member>
+        <member name="M:LAIR.IO.File.PromptForOpenPath(System.String)">
+            <summary>
+            Prompts the user for a path to open
+            </summary>
+            <param name="windowTitle">Title of window</param>
+            <returns>Selected path, or null for no file</returns>
+        </member>
+        <member name="M:LAIR.IO.File.PromptForOpenPath(System.String,System.String)">
+            <summary>
+            Prompts the user for a path to open
+            </summary>
+            <param name="windowTitle">Title of window</param>
+            <param name="initialDirectory">Initial directory</param>
+            <returns>Selected path, or null for no file</returns>
+        </member>
+        <member name="M:LAIR.IO.File.PromptForOpenPath(System.String,System.String,System.String)">
+            <summary>
+            Prompts the user for a path to open
+            </summary>
+            <param name="windowTitle">Title of window</param>
+            <param name="initialDirectory">Initial directory</param>
+            <param name="filter">File filter to display</param>
+            <returns>Selected path, or null for no file</returns>
+        </member>
+        <member name="M:LAIR.IO.File.PromptForSavePath(System.String)">
+            <summary>
+            Prompts the user for a path to save to
+            </summary>
+            <param name="windowTitle">Title of window</param>
+            <returns>Selected path, or null for no file</returns>
+        </member>
+        <member name="M:LAIR.IO.File.SampleLines(System.String,System.String,System.Single)">
+            <summary>
+            Samples lines from a file
+            </summary>
+            <param name="inputPath">Path to input file</param>
+            <param name="outputPath">Path to output file</param>
+            <param name="percentage">Percentage to sample. Sampling is done randomly, so the exact number of sampled lines might differ slightly for small sample sizes.</param>
+        </member>
+        <member name="T:LAIR.IO.Directory">
+            <summary>
+            Provides additional filesystem routines
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.Directory.GetNumberedPaths(System.String,System.String,System.String[])">
+            <summary>
+            Gets numbered list of paths in a directory. Each path in given directory must contain exactly one integer.
+            </summary>
+            <param name="directory">Path to directory</param>
+            <param name="pattern">Pattern for files to match</param>
+            <param name="excludeEndings">File endings to exclude from the returned paths</param>
+            <returns>List of paths, indexed by number</returns>
+        </member>
+        <member name="M:LAIR.IO.Directory.CombineNumberedFiles(System.String,System.String,System.Boolean)">
+            <summary>
+            Combines numbered files into a single file
+            </summary>
+            <param name="directory">Path to directory containing files to combine</param>
+            <param name="outputPath">Path to output file</param>
+            <param name="ignoreBlankLines">Whether or not to ignore blank lines</param>
+        </member>
+        <member name="M:LAIR.IO.Directory.FindDirectory(System.String,System.String)">
+            <summary>
+            Finds a directory
+            </summary>
+            <param name="directory">Directory to search</param>
+            <param name="pattern">Pattern to search for</param>
+            <returns>Directory path</returns>
+        </member>
+        <member name="M:LAIR.IO.Directory.FindFile(System.String,System.String)">
+            <summary>
+            Finds a file
+            </summary>
+            <param name="directory">Directory to search</param>
+            <param name="pattern">Pattern to search for</param>
+            <returns>File path</returns>
+        </member>
+        <member name="M:LAIR.IO.Directory.GetTemporaryDirectory">
+            <summary>
+            Gets the path to a new temporary directory, which will be created before this method returns.
+            </summary>
+            <returns>Path to temporary directory</returns>
+        </member>
+        <member name="M:LAIR.IO.Directory.PromptForDirectory(System.String)">
+            <summary>
+            Prompts the user for a directory
+            </summary>
+            <param name="description">Description in browser</param>
+            <returns>Directory, or null if none</returns>
+        </member>
+        <member name="M:LAIR.IO.Directory.PromptForDirectory(System.String,System.String)">
+            <summary>
+            Prompts the user for a directory
+            </summary>
+            <param name="description">Description in browser</param>
+            <param name="startDirectory">Starting directory</param>
+            <returns>Directory, or null if none</returns>
+        </member>
+        <member name="T:LAIR.IO.LineSearchTextStream">
+            <summary>
+            Provides line-based access to a text stream
+            </summary>
+        </member>
+        <member name="M:LAIR.IO.LineSearchTextStream.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to file to search</param>
+            <param name="linePositionCachePath">Path to file that stores the line position cache. Computing line positions can be a time consuming
+            process. The good news is that it only needs to be done once and can then be stored. This file stores the line positions.</param>
+        </member>
+        <member name="M:LAIR.IO.LineSearchTextStream.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to file to search</param>
+        </member>
+        <member name="M:LAIR.IO.LineSearchTextStream.Search(System.Object,System.Int64,System.Int64)">
+            <summary>
+            Searches for a line
+            </summary>
+            <param name="key">Line to search for</param>
+            <param name="start">Start byte</param>
+            <param name="end">End byte</param>
+            <returns>Line</returns>
+        </member>
+        <member name="P:LAIR.IO.LineSearchTextStream.Count">
+            <summary>
+            Gets the number of lines in the text stream
+            </summary>
+        </member>
+    </members>
+</doc>

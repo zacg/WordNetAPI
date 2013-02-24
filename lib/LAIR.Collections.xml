@@ -1,0 +1,530 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LAIR.Collections</name>
+    </assembly>
+    <members>
+        <member name="T:LAIR.Collections.Generic.Set`1">
+            <summary>
+            Represents a set of unique items
+            </summary>
+            <typeparam name="T">Type of elements in the set</typeparam>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._hashIndexFirstSlotIndex">
+            <summary>
+            Contains the first slot number for each hash code
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._slots">
+            <summary>
+            Slots used to store element data and hash codes
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._numUsedSlots">
+            <summary>
+            The number of slots that are in use (i.e. filled with data) or have been used and marked as empty
+            later on. This differs from _slots.Length, as not all of the array will be in use.
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._nextEmptySlotIndex">
+            <summary>
+            The index of the first slot in the empty slots chain. Remove() prepends the cleared slot to 
+            the empty chain. Add() fills the first slot in the empty slots chain with the added element
+            (or increases the number of touched slots if the empty slots chain is empty).
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._count">
+            <summary>
+            The number of items in this set
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._comparer">
+            <summary>
+            Equality comparer for elements in the set
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._numChangesMade">
+            <summary>
+            The number of changes made to this set. Used by enumerators to detect changes and invalidate themselves.
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._throwExceptionOnDuplicateAdd">
+            <summary>
+            Whether or not to throw exceptions when duplicate elements are added to the set
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._throwExceptionOnFailedRemove">
+            <summary>
+            Whether or not to throw exceptions when elements are not removed
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._isReadOnly">
+            <summary>
+            Whether or not this set is read-only
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1._loadFactor">
+            <summary>
+            Ratio of number of elements to the size of the hash index array. Values smaller than one result in quicker lookups
+            and higher memory usage. Values larger than one result in slower lookups and lower memory usage.
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="capacity">Number of elements that can be added without resizing</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="capacity">Number of elements that can be added without resizing</param>
+            <param name="comparer">Comparer to use</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="throwExceptionOnDuplicateAdd">Whether or not to throw an exception if a duplicate element is added</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.Collections.Generic.ICollection{`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="elements">Elements to add to set</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.Collections.Generic.ICollection{`0},System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="elements">Elements to add to set</param>
+            <param name="throwExceptionOnDuplicateAdd">Whether or not to throw an exception if a duplicate element is added</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="comparer">Comparer to use</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.Collections.Generic.ICollection{`0},System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="elements">Elements to construct set from</param>
+            <param name="comparer">Comparer to use</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.#ctor(System.String,System.Func{System.String,`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Path to saved set</param>
+            <param name="stringConversion">Function from strings to objects of type T</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Init(System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Initializes the set
+            </summary>
+            <param name="capacity">Number of elements that can be added without resizing</param>
+            <param name="comparer">Comparer for set</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Add(`0)">
+            <summary>
+            Adds an element to this set
+            </summary>
+            <param name="element">Element to add</param>
+            <returns>True if element was added and false if it was already present</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a range of elements to this set
+            </summary>
+            <param name="elements">Elements to add</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Remove(`0)">
+            <summary>
+            Removes an element from this set
+            </summary>
+            <param name="element">Element to remove</param>
+            <returns>True if element was removed and false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes a range of elements from this set
+            </summary>
+            <param name="elements">Elements to remove</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.RemoveWhere(System.Predicate{`0})">
+            <summary>
+            Removes elements that satisfy a predicate
+            </summary>
+            <param name="predicate">Predicate to check</param>
+            <returns>Number of elements removed</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Clear">
+            <summary>
+            Clears elements from this set
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Contains(System.Int32,System.Int32,`0)">
+            <summary>
+            Checks whether an element is in this set
+            </summary>
+            <param name="hashIndex">Hash index of element</param>
+            <param name="hashCode">Hash code of element</param>
+            <param name="element">Element to check for</param>
+            <returns>True if element is present and false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Contains(`0)">
+            <summary>
+            Checks whether this set contains an element
+            </summary>
+            <param name="element">Element to check for</param>
+            <returns>True if element is present and false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Copy">
+            <summary>
+            Gets a copy of the current set
+            </summary>
+            <returns>Copy of the current set</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.CopyTo(`0[])">
+            <summary>
+            Copies elements in this set into an array
+            </summary>
+            <param name="array">Array into which elements should be copied</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies elements in this set into an array
+            </summary>
+            <param name="array">Array into which elements should be copied</param>
+            <param name="index">Index in array at which copying should begin</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.CopyTo(`0[],System.Int32,System.Int32)">
+            <summary>
+            Copies elements in this set into an array
+            </summary>
+            <param name="array">Array into which elements should be copied</param>
+            <param name="index">Index in array at which copying should begin</param>
+            <param name="count">Maximum number of element to be copied</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.ToArray">
+            <summary>
+            Converts the set to an array
+            </summary>
+            <returns>Array of elements</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Save(System.String,System.Func{`0,System.String})">
+            <summary>
+            Saves this set to disk
+            </summary>
+            <param name="path">Path to save to</param>
+            <param name="elementConversion">Function from elements to strings</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Resize">
+            <summary>
+            Resizes the set to accommodate the number of elements
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Hash(`0,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Gets a hash code and index for an element
+            </summary>
+            <param name="element">Element to get hash code and index for</param>
+            <param name="maxHashIndex">Maximum hash index that should be returned</param>
+            <param name="hashCode">Hash code for element</param>
+            <param name="hashIndex">Hash index for element</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.op_Equality(LAIR.Collections.Generic.Set{`0},LAIR.Collections.Generic.Set{`0})">
+            <summary>
+            Equals operator override
+            </summary>
+            <param name="set1">First set</param>
+            <param name="set2">Second set</param>
+            <returns>True if sets are equal and false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.op_Inequality(LAIR.Collections.Generic.Set{`0},LAIR.Collections.Generic.Set{`0})">
+            <summary>
+            Not equal operator override
+            </summary>
+            <param name="set1">First set</param>
+            <param name="set2">Second set</param>
+            <returns>True if sets are equal and false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Equals(System.Object)">
+            <summary>
+            Checks whether or not this set is identical to another
+            </summary>
+            <param name="obj">Set to compare this one to</param>
+            <returns>True if sets are identical, false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.GetHashCode">
+            <summary>
+            Gets hash code for this set
+            </summary>
+            <returns>Hash code for this set</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.ToString">
+            <summary>
+            Gets number of elements in set
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.IntersectWith(LAIR.Collections.Generic.Set{`0})">
+            <summary>
+            Intersects the current set with another, removing elements from the current set that are not in the other.
+            </summary>
+            <param name="other">Set to intersect the current one with</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.GetDiceOverlapWith(LAIR.Collections.Generic.Set{`0})">
+            <summary>
+            Gets Dice overlap coefficient with another set
+            </summary>
+            <param name="other">Other set</param>
+            <returns>Dice overlap coefficient</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <summary>
+            Gets enumerator for this set
+            </summary>
+            <returns>Enumerator for this set</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets enumerator for this set
+            </summary>
+            <returns>Enumerator for this set</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.GetEnumerator">
+            <summary>
+            Gets enumerator for this set
+            </summary>
+            <returns>Enumerator for this set</returns>
+        </member>
+        <member name="P:LAIR.Collections.Generic.Set`1.IsReadOnly">
+            <summary>
+            Gets or sets whether or not this set is read-only (default:  false)
+            </summary>
+        </member>
+        <member name="P:LAIR.Collections.Generic.Set`1.ThrowExceptionOnDuplicateAdd">
+            <summary>
+            Gets or sets whether or not to throw exceptions when duplicate elements are added to the set (default:  true)
+            </summary>
+        </member>
+        <member name="P:LAIR.Collections.Generic.Set`1.ThrowExceptionOnFailedRemove">
+            <summary>
+            Gets or sets whether or not to throw exceptions when elements are not removed (default:  true)
+            </summary>
+        </member>
+        <member name="P:LAIR.Collections.Generic.Set`1.Count">
+            <summary>
+            Gets the number of elements in this set
+            </summary>
+        </member>
+        <member name="T:LAIR.Collections.Generic.Set`1.Slot">
+            <summary>
+            A single slot of element storage
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1.Slot.Element">
+            <summary>
+            Element in slot
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1.Slot.ElementHashCode">
+            <summary>
+            Hash code of element in slot
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1.Slot.NextSlotIndex">
+            <summary>
+            Index of next slot whose element hash code collided with the current one
+            </summary>
+        </member>
+        <member name="F:LAIR.Collections.Generic.Set`1.Slot.IsFilled">
+            <summary>
+            Whether the slot is filled
+            </summary>
+        </member>
+        <member name="T:LAIR.Collections.Generic.Set`1.Enumerator">
+            <summary>
+            Represents an enumerator over a Set object
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Enumerator.#ctor(LAIR.Collections.Generic.Set{`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="set">Set to iterate over</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Enumerator.MoveNext">
+            <summary>
+            Moves to the next element in the set
+            </summary>
+            <returns>True if move was successful and false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Enumerator.Dispose">
+            <summary>
+            Disposes the current enumerator
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Enumerator.CheckState">
+            <summary>
+            Makes sure the state of the enumerated set hasn't changed
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.Enumerator.System#Collections#IEnumerator#Reset">
+            <summary>
+            Not supported
+            </summary>
+        </member>
+        <member name="P:LAIR.Collections.Generic.Set`1.Enumerator.Current">
+            <summary>
+            Gets the current element in the enumeration
+            </summary>
+        </member>
+        <member name="P:LAIR.Collections.Generic.Set`1.Enumerator.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the enumeration
+            </summary>
+        </member>
+        <member name="T:LAIR.Collections.Generic.Set`1.CapacityHelper">
+            <summary>
+            Provides helper functionality for setting the capacity
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.CapacityHelper.IsPrime(System.Int32)">
+            <summary>
+            Checks whether an integer is prime
+            </summary>
+            <param name="x">Integet to check</param>
+            <returns>True if integer is prime, false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.CapacityHelper.CalculateNextPrime(System.Int32)">
+            <summary>
+            Calculates the next prime number larger than a given number
+            </summary>
+            <param name="x">Number</param>
+            <returns>Next prime number greater than given number</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Set`1.CapacityHelper.GetNextCapacity(System.Int32)">
+            <summary>
+            Gets the next capacity larger than a given capacity
+            </summary>
+            <param name="currentCapacity">Current capacity</param>
+            <returns>Next capacity larger than a given capacity</returns>
+        </member>
+        <member name="T:LAIR.Collections.Generic.Permutor`1">
+            <summary>
+            Provides permutations of a sequence of items
+            </summary>
+            <typeparam name="T">Type of items to permute</typeparam>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Permutor`1.#ctor(`0[],System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="items">Items to permute</param>
+            <param name="permutationLength">Length of permutation to return (-1 for all permutations)</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.Permutor`1.GetEnumerator">
+            <summary>
+            Gets enumerator over permutations of items
+            </summary>
+            <returns>Enumerator over permutations of items</returns>
+        </member>
+        <member name="T:LAIR.Collections.Generic.IndexedItem`1">
+            <summary>
+            Represents an indexed item
+            </summary>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedItem`1.#ctor(`0)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="index">Index of item</param>
+        </member>
+        <member name="P:LAIR.Collections.Generic.IndexedItem`1.Index">
+            <summary>
+            Gets the index for an item
+            </summary>
+        </member>
+        <member name="T:LAIR.Collections.Generic.IndexedSet`2">
+            <summary>
+            Represents an indexable set
+            </summary>
+            <typeparam name="ItemType">Type of items to store</typeparam>
+            <typeparam name="IndexType">Type of index to use on items</typeparam>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="initialCapacity">Initial capacity</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.Add(`0)">
+            <summary>
+            Adds an item
+            </summary>
+            <param name="item">Item to add</param>
+            <returns>True if item was new</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a range of items
+            </summary>
+            <param name="items">Items to add</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.Get(`1)">
+            <summary>
+            Gets item by index
+            </summary>
+            <param name="index">Index of item to fetch</param>
+            <returns>Item</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.TryGet(`1,`0@)">
+            <summary>
+            Tries to get an item for an index
+            </summary>
+            <param name="index">Index</param>
+            <param name="item">Item</param>
+            <returns>True if item was found and false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.Remove(`0)">
+            <summary>
+            Removes an item from this set
+            </summary>
+            <param name="item">Item to remove</param>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.GetEnumerator">
+            <summary>
+            Gets enumerator over items
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.Collections.Generic.IndexedSet`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets enumerator over items
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:LAIR.Collections.Generic.IndexedSet`2.Item(`1)">
+            <summary>
+            Gets the item for an index
+            </summary>
+            <param name="index">Index of item to get</param>
+            <returns>Item</returns>
+        </member>
+        <member name="P:LAIR.Collections.Generic.IndexedSet`2.Count">
+            <summary>
+            Gets the number of items in this set
+            </summary>
+        </member>
+    </members>
+</doc>

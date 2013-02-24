@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LAIR.Morphology</name>
+    </assembly>
+    <members>
+        <member name="T:LAIR.Morphology.PosTagger">
+            <summary>
+            Tags parts of speech
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.PosTagger.Tag(System.Collections.Generic.List{System.String})">
+            <summary>
+            Tags a list of tokens
+            </summary>
+            <param name="tokens">Tokens to tag</param>
+            <returns>List of categories, one for each tag</returns>
+        </member>
+        <member name="T:LAIR.Morphology.DiscriminativeHmmPosTagger">
+            <summary>
+            Uses a discriminative HMM to tag words
+            </summary>
+        </member>
+        <member name="T:LAIR.Morphology.HmmPosTagger">
+            <summary>
+            HMM-based POS tagger
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.HmmPosTagger.Tag(System.Collections.Generic.List{System.String},LAIR.MachineLearning.HiddenMarkovModeling.HMM{System.String})">
+            <summary>
+            Tags tokens using an HMM
+            </summary>
+            <param name="tokens"></param>
+            <param name="hmm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.Morphology.HmmPosTagger.Train(System.String)">
+            <summary>
+            Trains the HMM. See the documentation in the implementing class for the format of the training file.
+            </summary>
+            <param name="trainingPath"></param>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTagger.#ctor(LAIR.MachineLearning.Classifier)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="classifier">Classifier to use</param>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTagger.Train(System.String)">
+            <summary>
+            Trains the tagger. The format of the training file should be:  one line of true state IDs, followed by a corresponding line of true observations. All IDs and observations should be separated by a space.
+            </summary>
+            <param name="trainingPath"></param>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTagger.Tag(System.Collections.Generic.List{System.String})">
+            <summary>
+            Tags tokens
+            </summary>
+            <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LAIR.Morphology.DiscriminativeHmmPosTagger.StateObservationSequenceEnumerator">
+            <summary>
+            Provides training sequences
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTagger.StateObservationSequenceEnumerator.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path">Training path</param>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTagger.StateObservationSequenceEnumerator.MoveNext">
+            <summary>
+            Moves to the next state and observation sequence
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:LAIR.Morphology.DiscriminativeHmmPosTagger.StateObservationSequenceEnumerator.Current">
+            <summary>
+            Gets current sequence
+            </summary>
+        </member>
+        <member name="P:LAIR.Morphology.DiscriminativeHmmPosTagger.StateObservationSequenceEnumerator.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current state and observation sequence
+            </summary>
+        </member>
+        <member name="T:LAIR.Morphology.PorterStemmer">
+             Stemmer, implementing the Porter Stemming Algorithm
+            
+             The Stemmer class transforms a word into its root form.  The input
+             word can be provided a character at time (by calling add()), or at once
+             by calling one of the various stem(something) methods.
+        </member>
+        <member name="T:LAIR.Morphology.Stemmer">
+            <summary>
+            Stems words
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.Stemmer.#ctor(LAIR.Misc.StopWordHandler,System.Int32,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stopWordHandler">Stop word handler to apply, or null for no stop word handling.</param>
+            <param name="maxStemCacheSize">Maximum size of the stem cache</param>
+            <param name="consultHeadWordList">Whether or not to consult the head word list when stemming</param>
+        </member>
+        <member name="M:LAIR.Morphology.Stemmer.Stem(System.String)">
+            <summary>
+            Stems a word
+            </summary>
+            <param name="word">Word to stem</param>
+            <returns>Stem of word</returns>
+        </member>
+        <member name="M:LAIR.Morphology.Stemmer.AddToStemCache(System.String,System.String)">
+            <summary>
+            Adds a word/stem pair to the stem cache
+            </summary>
+            <param name="word">Word to add</param>
+            <param name="stem">Stem to add</param>
+        </member>
+        <member name="M:LAIR.Morphology.Stemmer.GetSuffix(System.String)">
+            <summary>
+            Gets the suffix for a word
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LAIR.Morphology.Stemmer.StopWordHandler">
+            <summary>
+            Gets the stop word handler for this stemmer
+            </summary>
+        </member>
+        <member name="P:LAIR.Morphology.Stemmer.ConsultHeadWordList">
+            <summary>
+            Gets or sets whether or not to consult the headword list
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.#ctor(LAIR.Misc.StopWordHandler,System.Int32,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stopWordHandler"></param>
+            <param name="maxStemCacheSize"></param>
+            <param name="consultHeadWordList"></param>
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.add(System.Char)">
+            Add a character to the word being stemmed.  When you are finished
+            adding characters, you can call stem(void) to stem the word.
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.add(System.Char[],System.Int32)">
+            Adds wLen characters to the word being stemmed contained in a portion
+            of a char[] array. This is like repeated calls of add(char ch), but
+            faster.
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.ToString">
+            After a word has been stemmed, it can be retrieved by toString(),
+            or a reference to the internal buffer can be retrieved by getResultBuffer
+            and getResultLength (which is generally more efficient.)
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.getResultLength">
+            Returns the length of the word resulting from the stemming process.
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.getResultBuffer">
+            Returns a reference to a character buffer containing the results of
+            the stemming process.  You also need to consult getResultLength()
+            to determine the length of the result.
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.Stem(System.String)">
+            <summary>
+            Stem the word placed into the Stemmer buffer through calls to add().
+            Returns true if the stemming process resulted in a word different
+            from the input.  You can retrieve the result with
+            getResultLength()/getResultBuffer() or toString().
+            </summary>
+            <param name="word">Word to stem</param>
+            <returns>Stem of word</returns>
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.ResetStemmer">
+            <summary>
+            Resets the stemmer
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.PorterStemmer.RunStemmer">
+            <summary>
+            Runs Porter stemming algorithm
+            </summary>
+        </member>
+        <member name="P:LAIR.Morphology.PorterStemmer.Result">
+            <summary>
+            Gets the result of stemming
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LAIR.Morphology.GenerativeHmmPosTagger">
+            <summary>
+            HMM-based part of speech tagger
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.GenerativeHmmPosTagger.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="modelDirectory">Model directory for tagger</param>
+        </member>
+        <member name="M:LAIR.Morphology.GenerativeHmmPosTagger.Train(System.String)">
+            <summary>
+            Trains this tagger with data contained in a text file. The format of the file must be as follows:  "word1 tag1 word2 tag2" etc.
+            </summary>
+            <param name="trainingFilePath">Path to training file</param>
+        </member>
+        <member name="M:LAIR.Morphology.GenerativeHmmPosTagger.Tag(System.Collections.Generic.List{System.String})">
+            <summary>
+            Tags a list of tokens
+            </summary>
+            <param name="tokens">Tokens to tag</param>
+            <returns>List of categories, one for each tag</returns>
+        </member>
+        <member name="P:LAIR.Morphology.GenerativeHmmPosTagger.TransitionProbabilitiesPath">
+            <summary>
+            Gets the path to the transition probabilities file
+            </summary>
+        </member>
+        <member name="P:LAIR.Morphology.GenerativeHmmPosTagger.ObservationProbabilitiesPath">
+            <summary>
+            Gets the path to the observation probabilities file
+            </summary>
+        </member>
+        <member name="P:LAIR.Morphology.GenerativeHmmPosTagger.KnownWordsPath">
+            <summary>
+            Gets the path to the known words file
+            </summary>
+        </member>
+        <member name="T:LAIR.Morphology.HeadWords">
+            <summary>
+            Keeps a list of head words
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.HeadWords.IsHeadword(System.String)">
+            <summary>
+            Gets whether or not a word is a head word
+            </summary>
+            <param name="s">String to check</param>
+            <returns>True if given word is a head word, false otherwise</returns>
+        </member>
+        <member name="M:LAIR.Morphology.HeadWords.#cctor">
+            <summary>
+            Initializes head word list
+            </summary>
+        </member>
+        <member name="T:LAIR.Morphology.DiscriminativeHmmPosTaggerFEX">
+            <summary>
+            Discriminative HMM-based POS tagger feature extraction
+            </summary>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTaggerFEX.#ctor(LAIR.Collections.Generic.Set{LAIR.Morphology.DiscriminativeHmmPosTaggerFEX.Feature},LAIR.Morphology.Stemmer,LAIR.Collections.Generic.Set{LAIR.MachineLearning.HiddenMarkovModeling.DiscriminativeTimeSliceFEX{System.String}.Feature},System.Boolean,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="features"></param>
+            <param name="stemmer"></param>
+            <param name="timeSliceFeatures"></param>
+            <param name="abbreviatedFeatureNames"></param>
+            <param name="abbreviatedFeatureValues"></param>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTaggerFEX.GetFeatureName(LAIR.Morphology.DiscriminativeHmmPosTaggerFEX.Feature,System.Boolean)">
+            <summary>
+            Gets name for a feature
+            </summary>
+            <param name="feature">Feature to get name for</param>
+            <param name="abbreviated">Whether or not to get an abbreviated name</param>
+            <returns>Feature name</returns>
+        </member>
+        <member name="M:LAIR.Morphology.DiscriminativeHmmPosTaggerFEX.GetFeatureVector(LAIR.MachineLearning.ClassifiableEntity,System.Int32)">
+            <summary>
+            Gets features
+            </summary>
+            <param name="entity"></param>
+            <param name="featuresPerEntity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LAIR.Morphology.DiscriminativeHmmPosTaggerFEX.Feature">
+            <summary>
+            Features
+            </summary>
+        </member>
+    </members>
+</doc>

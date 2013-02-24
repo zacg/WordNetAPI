@@ -54,14 +54,14 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LAIR.Collections, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="LAIR.Collections">
+      <HintPath>..\..\lib\LAIR.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="LAIR.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="LAIR.Extensions">
+      <HintPath>..\..\lib\LAIR.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="LAIR.IO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="LAIR.IO">
+      <HintPath>..\..\lib\LAIR.IO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

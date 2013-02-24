@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LAIR.XML</name>
+    </assembly>
+    <members>
+        <member name="T:LAIR.XML.XmlParser">
+            <summary>
+            Nice wrapper for parsing XML
+            </summary>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.EscapeAttribute(System.String,System.String)">
+            <summary>
+            Escapes an attribute name/value pair
+            </summary>
+            <param name="attributeName"></param>
+            <param name="attributeValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.EscapeElement(System.String,System.String)">
+            <summary>
+            Escapes an element name/value pair
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:LAIR.XML.XmlParser._reader">
+            <summary>
+            XML reader doing the parsing
+            </summary>
+        </member>
+        <member name="F:LAIR.XML.XmlParser._xmlStream">
+            <summary>
+            Underlying stream containing the XML being parsed
+            </summary>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="xmlText">XML to parse</param> 
+        </member>
+        <member name="M:LAIR.XML.XmlParser.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="xmlStream">Stream to read XML from</param>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.Construct(System.IO.Stream)">
+            <summary>
+            Constructs the current XML parser from a stream
+            </summary>
+            <param name="xmlStream">Stream to read XML from</param>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.Reset">
+            <summary>
+            Resets the XML parser to the beginning of the XML stream
+            </summary>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.Close">
+            <summary>
+            Close the parser and release all held resources
+            </summary>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.Parse">
+            <summary>
+            Parse supplied XML in a SAX-style manner, firing events
+            </summary>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.AttributeValue(System.String,System.String)">
+            <summary>
+            Get an attribute value for an element in the stream
+            </summary>
+            <param name="element">Element name for which to get attribute value</param>
+            <param name="attribute">Attribute name for which to get value</param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.ElementText(System.String)">
+            <summary>
+            Get element text for a subsequent element in the stream
+            </summary>
+            <param name="element">Element name for which to get text</param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.OuterXML(System.String)">
+            <summary>
+            Get XML representation (including markup) of a subsequent element and 
+            all its children elements
+            </summary>
+            <param name="element">Element to get outer XML for</param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.InnerXML(System.String)">
+            <summary>
+            Get XML representation (including markup) for the current node excluding
+            the current node
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.SkipToElement(System.String)">
+            <summary>
+            Skip to an element in the stream, or move back to the current element if
+            we're on an attribute node.
+            </summary>
+            <param name="element">Name of element to move to</param>
+            <returns>True if element is located, false otherwise.</returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.SkipToElement(System.String,System.String[])">
+            <summary>
+            Skip to an element that satisfies a set of constraints
+            </summary>
+            <param name="element">Element to skip to</param>
+            <param name="attributeConstraints">Attribute constraints</param>
+            <returns></returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.MoveToElementNode(System.Boolean)">
+            <summary>
+            Move to an element node
+            </summary>
+            <param name="stayOnCurrent">Whether or not to stay on current node if it is an element node</param>
+            <returns>Name of element moved to</returns>
+        </member>
+        <member name="M:LAIR.XML.XmlParser.GetAttributeNames(System.String)">
+            <summary>
+            Gets the attribute names for a given element
+            </summary>
+            <param name="element">Element to get attributes for</param>
+            <returns>Attributes</returns>
+        </member>
+        <member name="E:LAIR.XML.XmlParser.OnStartElement">
+            <summary>
+            Fired when an element is encountered
+            </summary>
+        </member>
+        <member name="E:LAIR.XML.XmlParser.OnEndElement">
+            <summary>
+            Fired when an element has ended
+            </summary>
+        </member>
+        <member name="E:LAIR.XML.XmlParser.OnElementText">
+            <summary>
+            Fired when text is encountered
+            </summary>
+        </member>
+        <member name="T:LAIR.XML.XmlParser.StartElementDelegate">
+            <summary>
+            Delegate for start element parse events
+            </summary>
+            <param name="elementName">Name of element</param>
+            <param name="attributes">Attributes of element</param>
+        </member>
+        <member name="T:LAIR.XML.XmlParser.EndElementDelegate">
+            <summary>
+            Delegate for end element parse events
+            </summary>
+            <param name="elementName">Element that has ended</param>
+        </member>
+        <member name="T:LAIR.XML.XmlParser.ElementTextDelegate">
+            <summary>
+            Delegate for text parse events
+            </summary>
+            <param name="text">Text encountered</param>
+        </member>
+    </members>
+</doc>
