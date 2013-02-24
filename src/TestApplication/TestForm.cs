@@ -28,7 +28,7 @@ namespace TestApplication
 
             // create wordnet engine (use disk-based retrieval by default)
             string root = Directory.GetDirectoryRoot(".");
-            _wordNetEngine = new WordNetEngine(root + @"NLP\Resources\WordNet_3", false);
+            _wordNetEngine = new WordNetEngine(root + @"\dev\wordnetapi\resources\", false);
 
             if (!_wordNetEngine.InMemory)
                 test.Text += " (will take a while)";
@@ -74,6 +74,7 @@ namespace TestApplication
                     try
                     {
                         SynSet synset = _wordNetEngine.GetMostCommonSynSet(word.Text, (WordNetEngine.POS)pos.SelectedItem);
+                        
                         if (synset != null)
                             synSetsToShow = new Set<SynSet>(new SynSet[] { synset });
                     }
